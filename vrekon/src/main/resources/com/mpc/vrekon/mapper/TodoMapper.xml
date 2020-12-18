@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bktsh.practice.mapper.TodoMapper">
+    <cache />
+    <select id="getTodoById" resultType="Todo">
+        SELECT  ID as id,
+                DESCRIPTION as description
+        FROM    TB_TODO
+        WHERE   ID= #{todoId}
+    </select>
+    <select id="getAll" resultType="Todo">
+        SELECT  ID as id,
+                DESCRIPTION as description
+        FROM TB_TODO
+    </select>
+</mapper>
