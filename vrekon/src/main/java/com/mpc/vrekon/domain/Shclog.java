@@ -1,7 +1,13 @@
 package com.mpc.vrekon.domain;
 
-public class Shclog {
+import java.io.Serializable;
 
+public class Shclog implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String pan;
 	private String acquirer;
 	private String issuer;
@@ -81,6 +87,10 @@ public class Shclog {
 	}
 	
 	private String getFixedLengthField(String value, int length){
+		
+		if(value == null){
+			value = " ";
+		}
 		
 		if(value.length() > length){
 			return value.substring(0, length);
