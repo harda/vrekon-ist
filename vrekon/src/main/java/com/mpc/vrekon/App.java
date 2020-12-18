@@ -16,7 +16,7 @@ public class App {
        
             
             ShclogMapper shclogMapper = session.getMapper(ShclogMapper.class);
-            System.out.println("user: "+shclogMapper.getAll().get(1));
+            System.out.println("user: "+shclogMapper.getAllByDate("08-09-2020").get(1).getAcquirer());
         	
         }
         

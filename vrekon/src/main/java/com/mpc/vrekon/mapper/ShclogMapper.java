@@ -3,6 +3,7 @@ package com.mpc.vrekon.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.mpc.vrekon.domain.Shclog;
@@ -21,6 +22,6 @@ public interface ShclogMapper {
     		+ " FROM SHCLOG UNION "
     		+ "SELECT PAN, ACQUIRER, ISSUER, TRACE, LOCAL_DATE, TERMID, AMOUNT, LOCAL_TIME, RESPCODE "
     		+ "FROM SHCLOG_REQ"
-    		+ ") WHERE LOCAL_DATE = TO_DATE(#{},'DD-MM-YYYY')")
-    List<Shclog> getAll();
+    		+ ") WHERE LOCAL_DATE = TO_DATE(#{shcdate},'DD-MM-YYYY')")
+    List<Shclog> getAllByDate(@Param("shcdate") String date);
 }
