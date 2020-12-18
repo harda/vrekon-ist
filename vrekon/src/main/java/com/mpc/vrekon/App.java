@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mpc.vrekon.domain.Shclog;
 import com.mpc.vrekon.mapper.ShclogMapper;
 
 public class App {
@@ -16,7 +17,11 @@ public class App {
        
             
             ShclogMapper shclogMapper = session.getMapper(ShclogMapper.class);
-            System.out.println("user: "+shclogMapper.getAllByDate("08-09-2020").get(1).getAcquirer());
+            
+            for(Shclog shclog : shclogMapper.get210ByDate("08-09-2020")){
+            	System.out.println(shclog.getData());
+            }
+            
         	
         }
         

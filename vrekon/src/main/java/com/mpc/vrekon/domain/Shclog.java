@@ -11,6 +11,7 @@ public class Shclog {
 	private double amount;
 	private int local_time;
 	private int respcode;
+	
 	public String getPan() {
 		return pan;
 	}
@@ -64,6 +65,32 @@ public class Shclog {
 	}
 	public void setRespcode(int respcode) {
 		this.respcode = respcode;
+	}
+	
+	public String getData(){
+		String result = getFixedLengthField(pan, 19) +
+				getFixedLengthField(acquirer, 10) +
+				getFixedLengthField(issuer, 10) +
+				getFixedLengthField(String.valueOf(amount), 12) +
+				getFixedLengthField(local_date, 10) +
+				getFixedLengthField(termid, 12) +
+				getFixedLengthField(String.valueOf(trace), 6) +
+				getFixedLengthField(String.valueOf(respcode), 2);
+		
+	    return result;
+	}
+	
+	private String getFixedLengthField(String value, int length){
+		
+		if(value.length() > length){
+			return value.substring(0, length);
+		}
+		
+		while(value.length() < length){
+			value = value + " ";
+		}
+		
+		return value;
 	}
 	
 	

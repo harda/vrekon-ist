@@ -20,7 +20,7 @@ public class ShclogService {
     private ShclogMapper shclogMapper;
 
     public List<Shclog> getAll() {
-        return this.shclogMapper.getAllByDate("08-09-2020");
+        return this.shclogMapper.get210ByDate("08-09-2020");
     }
 
 }

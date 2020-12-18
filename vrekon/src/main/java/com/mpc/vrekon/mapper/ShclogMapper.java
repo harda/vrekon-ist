@@ -17,11 +17,8 @@ public interface ShclogMapper {
 //    @Select("SELECT ID AS ID, USERNAME AS USERNAME, FIRST_NAME AS FIRSTNAME, LAST_NAME AS LASTNAME FROM TB_USER WHERE ID=#{userId}")
 //    User getUserById(@Param("userId") int id);
 
-    @Select("SELECT * FROM ("
-    		+ "SELECT PAN, ACQUIRER, ISSUER, TRACE, LOCAL_DATE, TERMID, AMOUNT, LOCAL_TIME, RESPCODE "
-    		+ " FROM SHCLOG UNION "
-    		+ "SELECT PAN, ACQUIRER, ISSUER, TRACE, LOCAL_DATE, TERMID, AMOUNT, LOCAL_TIME, RESPCODE "
-    		+ "FROM SHCLOG_REQ"
-    		+ ") WHERE LOCAL_DATE = TO_DATE(#{shcdate},'DD-MM-YYYY')")
-    List<Shclog> getAllByDate(@Param("shcdate") String date);
+    @Select(" SELECT PAN, ACQUIRER, ISSUER, TRACE, LOCAL_DATE, TERMID, AMOUNT, LOCAL_TIME, "
+    		+ "RESPCODE FROM SHCLOG_REQ WHERE LOCAL_DATE = TO_DATE(#{shcdate},'DD-MM-YYYY') "
+    		+ "AND MSGTYPE=210")
+    List<Shclog> get210ByDate(@Param("shcdate") String date);
 }
