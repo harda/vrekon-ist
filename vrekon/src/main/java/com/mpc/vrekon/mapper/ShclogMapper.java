@@ -11,4 +11,8 @@ import com.mpc.vrekon.domain.Shclog;
 public interface ShclogMapper {
 
     List<Shclog> get210ByDate(@Param("shcdate") String date);
+    
+    List<Shclog> get420ByDateInShclog(@Param("shcdate") String date);
+    
+    List<Shclog> get420ByDateInShclogReq(@Param("shcdate") String date);
 }

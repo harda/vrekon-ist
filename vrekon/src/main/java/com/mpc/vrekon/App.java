@@ -40,13 +40,33 @@ public class App {
             
             ShclogMapper shclogMapper = session.getMapper(ShclogMapper.class);
             
+            System.out.println("generating file: istfile"+date);
             FileOutputStream outputStream = new FileOutputStream("istfile"+date+".txt");
             
             for(Shclog shclog : shclogMapper.get210ByDate(date)){
             	System.out.println(shclog.getData());
             	outputStream.write((shclog.getData()+"\n").getBytes());
             }
+            outputStream.close();
             
+            
+            System.out.println("generating file: istfile"+date);
+            outputStream = new FileOutputStream("istfile420-shclog"+date+".txt");
+            
+            for(Shclog shclog : shclogMapper.get420ByDateInShclog(date)){
+            	System.out.println(shclog.getData());
+            	outputStream.write((shclog.getData()+"\n").getBytes());
+            }
+            outputStream.close();
+            
+            
+            System.out.println("generating file: istfile"+date);
+            outputStream = new FileOutputStream("istfile420-shclogreq"+date+".txt");
+            
+            for(Shclog shclog : shclogMapper.get420ByDateInShclogReq(date)){
+            	System.out.println(shclog.getData());
+            	outputStream.write((shclog.getData()+"\n").getBytes());
+            }     
             outputStream.close();
         	
         } catch (FileNotFoundException e) {

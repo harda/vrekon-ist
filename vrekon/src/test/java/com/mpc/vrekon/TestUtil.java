@@ -1,4 +1,4 @@
-package com.bktsh.practice;
+package com.mpc.vrekon;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

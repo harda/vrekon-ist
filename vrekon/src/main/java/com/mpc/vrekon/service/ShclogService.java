@@ -10,7 +10,7 @@ import com.mpc.vrekon.domain.Shclog;
 import com.mpc.vrekon.mapper.ShclogMapper;
 
 /**
- * Created by hashem on 2/20/17.
+ * Created by harda on 19 des 2020.
  */
 @Service
 @Transactional
@@ -19,8 +19,31 @@ public class ShclogService {
     @Autowired
     private ShclogMapper shclogMapper;
 
-    public List<Shclog> getAll() {
-        return this.shclogMapper.get210ByDate("08-09-2020");
+    /**
+     * 
+     * @param date, format dd-MM-yyyy
+     * @return
+     */
+    public List<Shclog> get210ByDate(String date) {
+        return this.shclogMapper.get210ByDate(date);
+    }
+    
+    /**
+     * 
+     * @param date, format dd-MM-yyyy
+     * @return
+     */
+    public List<Shclog> get420ByDateInShclog(String date) {
+        return this.shclogMapper.get420ByDateInShclog(date);
+    }
+    
+    /**
+     * 
+     * @param date, format dd-MM-yyyy
+     * @return
+     */
+    public List<Shclog> get420ByDateInShclogReq(String date) {
+        return this.shclogMapper.get420ByDateInShclogReq(date);
     }
 
 }

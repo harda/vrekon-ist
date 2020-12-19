@@ -3,7 +3,7 @@ package com.mpc.vrekon.domain;
 import java.io.Serializable;
 
 /**
- * Created by hashem on 2/20/17.
+ * Created by harda on 19 des 2020.
  */
 public class User implements Serializable {
 

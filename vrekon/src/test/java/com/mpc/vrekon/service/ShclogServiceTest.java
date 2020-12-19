@@ -1,6 +1,6 @@
-package com.bktsh.practice.service;
+package com.mpc.vrekon.service;
 
-import com.bktsh.practice.AbstractTest;
+import com.mpc.vrekon.AbstractTest;
 import com.mpc.vrekon.domain.Shclog;
 import com.mpc.vrekon.service.ShclogService;
 
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static com.bktsh.practice.TestUtil.prettyString;
+import static com.mpc.vrekon.TestUtil.prettyString;
 
 /**
  * Created on 2017-Feb-16
@@ -23,8 +23,8 @@ public class ShclogServiceTest extends AbstractTest {
     private ShclogService subject;
 
     @Test
-    public void testGetTodoById() throws Exception {
-        List<Shclog> result = subject.getAll();
+    public void testGetFileM200() throws Exception {
+        List<Shclog> result = subject.get210ByDate("08-09-2020");
         System.out.println("--------------------------");
         prettyString(result);
         System.out.println("--------------------------");

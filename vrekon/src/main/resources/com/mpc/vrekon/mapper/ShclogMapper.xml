@@ -17,4 +17,32 @@
         
         
     </select>
+    
+    <select id="get420ByDateInShclog" parameterType="string" resultType="shclog"
+    	fetchSize="256">
+ 
+         SELECT PAN, ACQUIRER, ISSUER, 
+         TRACE, LOCAL_DATE, TERMID, 
+         AMOUNT, LOCAL_TIME, RESPCODE 
+         FROM SHCLOG
+         
+         WHERE LOCAL_DATE = TO_DATE(#{shcdate},'DD-MM-YYYY') 
+         AND MSGTYPE=430
+        
+        
+    </select>
+    
+    <select id="get420ByDateInShclogReq" parameterType="string" resultType="shclog"
+    	fetchSize="256">
+ 
+         SELECT PAN, ACQUIRER, ISSUER, 
+         TRACE, LOCAL_DATE, TERMID, 
+         AMOUNT, LOCAL_TIME, RESPCODE 
+         FROM SHCLOG_REQ 
+         
+         WHERE LOCAL_DATE = TO_DATE(#{shcdate},'DD-MM-YYYY') 
+         AND MSGTYPE=430
+        
+        
+    </select>
 </mapper>
