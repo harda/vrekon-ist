@@ -4,7 +4,7 @@
 
 <mapper namespace="com.mpc.vrekon.mapper.ShclogMapper">
     <cache />
-    <select id="get210ByDate" parameterType="string" resultType="shclog"
+    <select id="get210ByDate" parameterType="string" resultType="com.mpc.vrekon.domain.Shclog"
     	fetchSize="256">
  
          SELECT PAN, ACQUIRER, ISSUER, 
@@ -18,7 +18,7 @@
         
     </select>
     
-    <select id="get420ByDateInShclog" parameterType="string" resultType="shclog"
+    <select id="get420ByDateInShclog" parameterType="string" resultType="com.mpc.vrekon.domain.Shclog"
     	fetchSize="256">
  
          SELECT PAN, ACQUIRER, ISSUER, 
@@ -32,7 +32,7 @@
         
     </select>
     
-    <select id="get420ByDateInShclogReq" parameterType="string" resultType="shclog"
+    <select id="get420ByDateInShclogReq" parameterType="string" resultType="com.mpc.vrekon.domain.Shclog"
     	fetchSize="256">
  
          SELECT PAN, ACQUIRER, ISSUER, 
