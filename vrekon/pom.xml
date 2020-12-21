@@ -111,6 +111,8 @@
 
     <build>
         <plugins>                       
+        <!-- 
+			
            <plugin>
 			    <groupId>org.springframework.boot</groupId>
 			    <artifactId>spring-boot-maven-plugin</artifactId>
@@ -121,14 +123,13 @@
 			            </goals>
 			            <configuration>
 				            <mainClass>com.mpc.vrekon.App</mainClass>
-			            	<layout>JAR</layout>
+			            	 <layout>WAR</layout> 
 			                <classifier>spring-boot</classifier>
        						<cleanupDaemonThreads>false</cleanupDaemonThreads>
 			            </configuration>
 			        </execution>
 			    </executions>
-			</plugin>
-			
+			</plugin>-->
 			<plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.0</version>
@@ -144,18 +145,60 @@
 	                  </archive>
                 </configuration>
             </plugin>
-            
-           <!--  
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                	<execution>
+                		<id>copy-dependencies</id>
+                		<phase>prepare-package</phase>
+                		<goals>
+                			<goal>copy-dependencies</goal>
+                		</goals>
+                		<configuration>
+                			<outputDirectory>${project.build.directory}/lib</outputDirectory>
+                			<overWriteReleases>false</overWriteReleases>
+                			<overWriteSnapshots>false</overWriteSnapshots>
+                			<overWriteIfNewer>true</overWriteIfNewer>
+                		</configuration>
+                	</execution>
+                </executions>
+                <configuration>
+      				 <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                    <source>1.7</source>
+                    <target>1.7</target>
+	                   <archive>
+	                    <manifest>
+	                    <mainClass>com.mpc.vrekon.App</mainClass>
+	
+	                    </manifest>
+	                  </archive>
+                </configuration>
+            </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+	                   <archive>
+	                    <manifest>
+	                    	<addClasspath>true</addClasspath>
+	                    	<mainClass>com.mpc.vrekon.App</mainClass>
+							<classpathPrefix>lib/</classpathPrefix>
+	                    </manifest>
+	                  </archive>
+                </configuration>
+            </plugin>
+          <!-- 
              <plugin>
 	            <artifactId>maven-assembly-plugin</artifactId>
-	            <version>3.3.0</version>
+	            <groupId>org.apache.maven.plugins</groupId>
 	            <configuration>
 	                <descriptorRefs>
 	                    <descriptorRef>jar-with-dependencies</descriptorRef>
 	                </descriptorRefs>
 	                 <archive>
 	                  <manifest>
-	                  <mainClass>com.bktsh.practice.App</mainClass>
+	                  <mainClass>com.mpc.vrekon.App</mainClass>
 	
 	                  </manifest>
 	                </archive>
@@ -170,9 +213,35 @@
 	                </execution>
 	            </executions>
 	        </plugin>  
-            -->
-            
-            
+             
+            <plugin>
+	            <artifactId>maven-assembly-plugin</artifactId>
+	            <groupId>org.apache.maven.plugins</groupId>       
+	             <configuration>
+	                <descriptorRefs>
+	                    <descriptorRef>jar-with-dependencies</descriptorRef>
+	                </descriptorRefs>
+	                 <archive>
+	                  <manifest>
+	                  <addClasspath>true</addClasspath>
+	                  <mainClass>com.mpc.vrekon.App</mainClass>
+	
+	                  </manifest>
+	                </archive>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <id>make-assembly</id>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>single</goal>
+	                    </goals>
+	                    
+
+	                </execution>
+	            </executions>
+	        </plugin> -->
+             
             
         </plugins>
     </build>
