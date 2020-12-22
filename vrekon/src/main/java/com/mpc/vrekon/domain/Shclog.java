@@ -1,6 +1,8 @@
 package com.mpc.vrekon.domain;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class Shclog implements Serializable {
 
@@ -8,6 +10,9 @@ public class Shclog implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private NumberFormat numberFormat = new DecimalFormat("###");
+	
 	private String pan;
 	private String acquirer;
 	private String issuer;
@@ -17,6 +22,7 @@ public class Shclog implements Serializable {
 	private double amount;
 	private int local_time;
 	private int respcode;
+	private String refnum;
 	
 	public String getPan() {
 		return pan;
@@ -73,14 +79,22 @@ public class Shclog implements Serializable {
 		this.respcode = respcode;
 	}
 	
+	public String getRefnum() {
+		return refnum;
+	}
+	public void setRefnum(String refnum) {
+		this.refnum = refnum;
+	}
 	public String getData(){
 		String result = getFixedLengthField(pan, 19) +
 				getFixedLengthField(acquirer, 10) +
 				getFixedLengthField(issuer, 10) +
-				getFixedLengthField(String.valueOf(amount), 12) +
-				getFixedLengthField(local_date, 10) +
 				getFixedLengthField(termid, 12) +
+				getFixedLengthField(numberFormat.format(amount*100), 12) +
+				getFixedLengthField(local_date, 10) +
+				getFixedLengthField(String.valueOf(local_time), 10) +
 				getFixedLengthField(String.valueOf(trace), 6) +
+				getFixedLengthField(refnum, 12) +
 				getFixedLengthField(String.valueOf(respcode), 2);
 		
 	    return result;
